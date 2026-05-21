@@ -1,11 +1,20 @@
 .navbar {
-    background-color: black;
+    background-color: #111;
+    padding: 1rem;
 }
 
 .navList {
     display: flex;
+    gap: 1rem;
+    list-style: none;
 }
 
-.navItem {
-    list-style: none;
+.navList a {
+    color: white;
+    text-decoration: none;
+    font-weight: bold;
+}
+
+.navList a:hover {
+    color: #00bfff;
 }

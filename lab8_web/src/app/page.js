@@ -1,12 +1,11 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+import styles from "./Home.module.css";
 
 export default function Home() {
   return (
     // página principal del portafolio con nombre, carrera, descripción breve y tecnologías
-    <main className={styles.main}>
-      <h1 className={styles.title}>Hola, soy [Tu Nombre]</h1>
-      <p className={styles.description}>
+    <main className={styles.container}>
+      <h1 className={styles.title}>Hola, soy </h1>
+      <p className={styles.subtitle}>
         Soy estudiante de [Tu Carrera] y este es mi portafolio personal.
       </p>
       <div className={styles.techStack}>
