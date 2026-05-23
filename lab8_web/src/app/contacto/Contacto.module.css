@@ -1,26 +1,118 @@
 .container {
-    max-width: 500px;
-    margin: auto;
-    padding: 2rem;
+  animation: fadeIn 0.5s ease both;
+  max-width: 480px;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
+}
+
+.title {
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 12px;
+}
+
+.divider {
+  width: 40px;
+  height: 2px;
+  background: #4a6fa5;
+  border-radius: 2px;
+  margin-bottom: 24px;
+}
+
+.intro {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 28px;
 }
 
 .form {
-    display: flex;
-    flex-direction: column;
-    gap: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
-.input {
-    padding: 0.8rem;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+.field {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.label {
+  font-size: 11px;
+  font-weight: 600;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: #888;
+  font-family: var(--font-mono);
+}
+
+.input,
+.textarea {
+  padding: 10px 14px;
+  border: 1px solid #dde2ef;
+  border-radius: 8px;
+  font-size: 14px;
+  font-family: var(--font-body);
+  color: #1a1a2e;
+  background: #fafbff;
+  transition: border-color 0.2s, box-shadow 0.2s;
+  outline: none;
+}
+
+.input:focus,
+.textarea:focus {
+  border-color: #4a6fa5;
+  box-shadow: 0 0 0 3px rgba(74, 111, 165, 0.1);
+  background: white;
+}
+
+.textarea {
+  resize: vertical;
+  min-height: 100px;
+  line-height: 1.6;
 }
 
 .button {
-    padding: 0.8rem;
-    border: none;
-    background-color: black;
-    color: white;
-    cursor: pointer;
-    border-radius: 5px;
+  padding: 12px 28px;
+  background: #1a1a2e;
+  color: white;
+  border: none;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 600;
+  font-family: var(--font-body);
+  cursor: pointer;
+  transition: background 0.2s, transform 0.1s;
+  align-self: flex-start;
+  letter-spacing: 0.5px;
+}
+
+.button:hover {
+  background: #2d2d4e;
+}
+
+.button:active {
+  transform: scale(0.98);
+}
+
+.note {
+  margin-top: 24px;
+  font-size: 12px;
+  color: #bbb;
+  font-family: var(--font-mono);
 }

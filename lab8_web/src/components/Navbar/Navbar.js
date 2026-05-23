@@ -1,27 +1,30 @@
-//barra para poder acceder a cada una de las páginas 
+"use client";
 import Link from "next/link";
+import { usePathname } from "next/navigation";
 import styles from "./Navbar.module.css";
 
+const links = [
+  { href: "/", label: "Inicio" },
+  { href: "/sobre_mi", label: "Sobre mí" },
+  { href: "/tecnologias", label: "Tecnologías" },
+  { href: "/proyectos", label: "Proyectos" },
+  { href: "/contacto", label: "Contacto" },
+];
+
 export default function Navbar() {
-    return (
-        <nav className={styles.navbar}>
-            <ul className={styles.navList}>
-                <li className={styles.navItem}>
-                    <Link href="/">Inicio</Link>
-                </li>
-                <li className={styles.navItem}>
-                    <Link href="/sobre_mi">Sobre mí</Link>
-                </li>
-                <li className={styles.navItem}>
-                    <Link href="/tecnologias">Tecnologías</Link>
-                </li>
-                <li className={styles.navItem}>
-                    <Link href="/proyectos">Proyectos</Link>
-                </li>
-                <li className={styles.navItem}>
-                    <Link href="/contacto">Contacto</Link>
-                </li>
-            </ul>
-        </nav>
-    );
+  const pathname = usePathname();
+
+  return (
+    <nav className={styles.tabsCol} aria-label="Navegación principal">
+      {links.map(({ href, label }) => (
+        <Link
+          key={href}
+          href={href}
+          className={`${styles.tabLink} ${pathname === href ? styles.active : ""}`}
+        >
+          {label}
+        </Link>
+      ))}
+    </nav>
+  );
 }

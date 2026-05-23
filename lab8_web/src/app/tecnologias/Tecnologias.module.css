@@ -1,20 +1,117 @@
 .container {
-    padding: 2rem;
+  animation: fadeIn 0.5s ease both;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.eyebrow {
+  font-size: 10px;
+  letter-spacing: 3px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 8px;
+  font-family: var(--font-mono);
 }
 
 .title {
-    margin-bottom: 1rem;
+  font-family: var(--font-display);
+  font-size: 28px;
+  font-weight: 700;
+  color: #1a1a2e;
+  margin-bottom: 12px;
 }
 
-.list {
-    display: flex;
-    gap: 1rem;
-    flex-wrap: wrap;
+.divider {
+  width: 40px;
+  height: 2px;
+  background: #4a6fa5;
+  border-radius: 2px;
+  margin-bottom: 28px;
 }
 
-.card {
-    background-color: white;
-    padding: 1rem;
-    border-radius: 8px;
-    border: 1px solid #ddd;
+.intro {
+  font-size: 14px;
+  color: #555;
+  line-height: 1.8;
+  margin-bottom: 28px;
+  max-width: 520px;
+}
+
+.categoryTitle {
+  font-size: 10px;
+  letter-spacing: 2px;
+  text-transform: uppercase;
+  color: #aaa;
+  margin-bottom: 10px;
+  font-family: var(--font-mono);
+}
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(110px, 1fr));
+  gap: 10px;
+  margin-bottom: 28px;
+}
+
+.techCard {
+  background: #f8f9fc;
+  border: 1px solid #e8eaf0;
+  border-radius: 10px;
+  padding: 14px 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  transition: border-color 0.2s, background 0.2s;
+  cursor: default;
+}
+
+.techCard:hover {
+  background: var(--icon-bg, #eef2fb);
+  border-color: color-mix(in srgb, var(--icon-color, #4a6fa5) 40%, #e8eaf0);
+}
+
+/* Colored rounded background behind the SVG icon */
+.techIconWrap {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  background: var(--icon-bg, #eef2fb);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: transform 0.2s ease;
+  flex-shrink: 0;
+}
+
+.techCard:hover .techIconWrap {
+  transform: scale(1.08);
+}
+
+.techName {
+  font-size: 12px;
+  font-weight: 600;
+  color: #333;
+  text-align: center;
+  font-family: var(--font-mono);
+}
+
+.techLevel {
+  font-size: 10px;
+  color: #4a6fa5;
+  background: #eef2fb;
+  padding: 2px 8px;
+  border-radius: 10px;
+}
+
+.note {
+  font-size: 13px;
+  color: #888;
+  line-height: 1.7;
+  font-style: italic;
+  padding-top: 8px;
+  border-top: 1px dashed #e0e0e0;
 }
