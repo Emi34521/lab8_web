@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cinzel:wght@400;600&family=Rye&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Share+Tech+Mono&family=Cinzel:wght@400;600&display=swap');
 
 .container {
   animation: fadeIn 0.5s ease both;
@@ -6,7 +6,7 @@
 
 @keyframes fadeIn {
   from { opacity: 0; transform: translateY(8px); }
-  to { opacity: 1; transform: translateY(0); }
+  to   { opacity: 1; transform: translateY(0); }
 }
 
 .eyebrow {
@@ -47,24 +47,58 @@
   gap: 14px;
 }
 
-/* Base card */
+/* ── Base card ───────────────────────────────── */
 .card {
   border-radius: 10px;
-  padding: 16px 18px 14px;
   position: relative;
   overflow: hidden;
   cursor: pointer;
   text-decoration: none;
   display: block;
-  transition: transform 0.2s ease, box-shadow 0.2s ease;
-  min-height: 130px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease;
+  min-height: 160px;
 }
 
 .card:hover {
   transform: translateY(-3px);
 }
 
-/* Bonfire icon — shared */
+/* ── Screenshot (hidden layer, revealed on hover) ── */
+.screenshotWrap {
+  position: absolute;
+  inset: 0;
+  opacity: 0;
+  transition: opacity 0.35s ease;
+  pointer-events: none;
+}
+
+.card:hover .screenshotWrap {
+  opacity: 1;
+}
+
+.screenshot {
+  object-fit: cover;
+  object-position: top;
+  border-radius: 10px;
+}
+
+/* Semi-transparent tinted overlay so the text stays readable */
+.screenshotOverlay {
+  position: absolute;
+  inset: 0;
+  border-radius: 10px;
+  /* each theme overrides this via its own rule below */
+  background: rgba(0, 0, 0, 0.55);
+}
+
+/* ── Card body (text) ── */
+.cardBody {
+  position: relative;
+  z-index: 1;
+  padding: 16px 18px 36px;
+}
+
+/* ── Bonfire ── */
 .bonfire {
   position: absolute;
   bottom: 10px;
@@ -76,6 +110,7 @@
   transform: translateY(4px);
   filter: drop-shadow(0 0 5px rgba(255, 120, 0, 0.9));
   display: block;
+  z-index: 2;
 }
 
 .card:hover .bonfire {
@@ -83,17 +118,18 @@
   transform: translateY(0);
 }
 
-/* ─── CYBERPUNK theme ─── */
+/* ══════════════════════════════════════════════
+   THEMES
+══════════════════════════════════════════════ */
+
+/* ── Cyberpunk ── */
 .cyber {
   background: #050510;
   border: 1px solid #00ff41;
-  box-shadow: 0 0 0 rgba(0,255,65,0);
 }
-
 .cyber:hover {
   box-shadow: 0 0 20px rgba(0, 255, 65, 0.25), 0 8px 24px rgba(0,0,0,0.4);
 }
-
 .cyber::before {
   content: '';
   position: absolute;
@@ -101,43 +137,22 @@
   height: 2px;
   background: linear-gradient(90deg, transparent, #00ff41, #ff00ff, transparent);
   animation: scanline 3s linear infinite;
+  z-index: 3;
 }
-
 @keyframes scanline {
-  0% { transform: translateX(-100%); }
+  0%   { transform: translateX(-100%); }
   100% { transform: translateX(100%); }
 }
+.cyber .screenshotOverlay { background: rgba(5, 5, 16, 0.6); }
+.cyberLabel { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #ff00ff; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.cyberTitle { font-family: 'Share Tech Mono', monospace; font-size: 14px; color: #00ff41; margin-bottom: 6px; letter-spacing: 1px; }
+.cyberDesc  { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #005514; line-height: 1.5; }
 
-.cyberLabel {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px;
-  color: #ff00ff;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.cyberTitle {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 14px;
-  color: #00ff41;
-  margin-bottom: 6px;
-  letter-spacing: 1px;
-}
-
-.cyberDesc {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: #005514;
-  line-height: 1.5;
-}
-/* ─── DARK SOULS theme ─── */
+/* ── Dark Souls ── */
 .darksouls {
   background: #080808;
   border: 1px solid #5a3e1b;
-  position: relative;
 }
-
 .darksouls::before {
   content: '';
   position: absolute;
@@ -145,152 +160,58 @@
   border: 1px solid rgba(90, 62, 27, 0.3);
   border-radius: 7px;
   pointer-events: none;
+  z-index: 1;
 }
-
 .darksouls:hover {
   box-shadow: 0 0 30px rgba(255, 100, 0, 0.15), 0 8px 24px rgba(0,0,0,0.6);
 }
+.darksouls .screenshotOverlay { background: rgba(8, 8, 8, 0.58); }
+.dsLabel { font-family: 'Cinzel', serif; font-size: 8px; color: #5a3e1b; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.dsTitle { font-family: 'Cinzel', serif; font-size: 14px; font-weight: 600; color: #c8922a; margin-bottom: 6px; }
+.dsDesc  { font-size: 11px; color: #4a3010; line-height: 1.5; font-family: Georgia, serif; }
 
-.dsLabel {
-  font-family: 'Cinzel', serif;
-  font-size: 8px;
-  color: #5a3e1b;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.dsTitle {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  font-weight: 600;
-  color: #c8922a;
-  margin-bottom: 6px;
-}
-
-.dsDesc {
-  font-size: 11px;
-  color: #4a3010;
-  line-height: 1.5;
-  font-family: Georgia, serif;
-}
-
-/* ─── PIXEL / retro theme ─── */
+/* ── Pixel / Retro ── */
 .pixel {
   background: #000;
   border: 3px solid #fff;
   image-rendering: pixelated;
-  position: relative;
 }
-
-.pixel::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  background: repeating-linear-gradient(
-    0deg,
-    rgba(255,255,255,0.015) 0px,
-    rgba(255,255,255,0.015) 1px,
-    transparent 1px,
-    transparent 4px
-  );
-  pointer-events: none;
-}
-
 .pixel:hover {
   box-shadow: 4px 4px 0 #fff;
 }
+.pixel .screenshotOverlay { background: rgba(0, 0, 0, 0.45); }
+.pixelLabel { font-family: 'Share Tech Mono', monospace; font-size: 9px; color: #888; letter-spacing: 1px; margin-bottom: 6px; }
+.pixelTitle { font-family: 'Share Tech Mono', monospace; font-size: 14px; color: #fff; margin-bottom: 6px; }
+.pixelDesc  { font-family: 'Share Tech Mono', monospace; font-size: 11px; color: #555; line-height: 1.5; }
 
-.pixelLabel {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 9px;
-  color: #888;
-  letter-spacing: 1px;
-  margin-bottom: 6px;
-}
-
-.pixelTitle {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 14px;
-  color: #fff;
-  margin-bottom: 6px;
-}
-
-.pixelDesc {
-  font-family: 'Share Tech Mono', monospace;
-  font-size: 11px;
-  color: #555;
-  line-height: 1.5;
-}
-
-/* ─── ZELDA / fantasy theme ─── */
+/* ── Fantasy / Zelda ── */
 .fantasy {
   background: linear-gradient(135deg, #0a1628 0%, #0d2040 100%);
   border: 1px solid #4a8c5c;
 }
-
 .fantasy:hover {
   box-shadow: 0 0 20px rgba(74, 140, 92, 0.2), 0 8px 24px rgba(0,0,0,0.4);
 }
+.fantasy .screenshotOverlay { background: rgba(10, 22, 40, 0.55); }
+.fantasyLabel { font-family: 'Cinzel', serif; font-size: 8px; color: #4a8c5c; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; }
+.fantasyTitle { font-family: 'Cinzel', serif; font-size: 14px; color: #7ec895; margin-bottom: 6px; }
+.fantasyDesc  { font-size: 11px; color: #2a5c38; line-height: 1.5; font-family: Georgia, serif; }
 
-.fantasyLabel {
-  font-family: 'Cinzel', serif;
-  font-size: 8px;
-  color: #4a8c5c;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-}
-
-.fantasyTitle {
-  font-family: 'Cinzel', serif;
-  font-size: 14px;
-  color: #7ec895;
-  margin-bottom: 6px;
-}
-
-.fantasyDesc {
-  font-size: 11px;
-  color: #2a5c38;
-  line-height: 1.5;
-  font-family: Georgia, serif;
-}
-
-/* ─── Plain / minimal theme ─── */
+/* ── Plain / Minimal ── */
 .plain {
   background: #fafafa;
   border: 1px solid #e0e0e0;
 }
-
 .plain:hover {
   border-color: #bbb;
   box-shadow: 0 4px 12px rgba(0,0,0,0.08);
 }
+.plain .screenshotOverlay { background: rgba(250, 250, 250, 0.45); }
+.plainLabel { font-size: 9px; color: #bbb; letter-spacing: 2px; text-transform: uppercase; margin-bottom: 6px; font-family: var(--font-mono); }
+.plainTitle { font-size: 14px; font-weight: 600; color: #222; margin-bottom: 6px; font-family: var(--font-body); }
+.plainDesc  { font-size: 11px; color: #888; line-height: 1.5; font-family: var(--font-body); }
 
-.plainLabel {
-  font-size: 9px;
-  color: #bbb;
-  letter-spacing: 2px;
-  text-transform: uppercase;
-  margin-bottom: 6px;
-  font-family: var(--font-mono);
-}
-
-.plainTitle {
-  font-size: 14px;
-  font-weight: 600;
-  color: #222;
-  margin-bottom: 6px;
-  font-family: var(--font-body);
-}
-
-.plainDesc {
-  font-size: 11px;
-  color: #888;
-  line-height: 1.5;
-  font-family: var(--font-body);
-}
-
+/* ── Legend ── */
 .legend {
   margin-top: 20px;
   padding: 12px 14px;
